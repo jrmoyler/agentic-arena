@@ -16,3 +16,12 @@ npx serve .
 
 The application is configured for Vercel through `vercel.json` and remains offline-first at runtime.
 
+## Card artwork integrity
+
+The card renderer derives a complete vector illustration from each card's canonical ID, title, type, division, faction, and role. Run the exhaustive integrity gate with:
+
+```bash
+npm test
+```
+
+The gate fails on catalog drift, duplicate IDs, seed collisions, duplicate SVG output, duplicate visible geometry, missing name-derived insignia, or missing semantic title motifs.
