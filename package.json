@@ -1,0 +1,11 @@
+{
+  "name": "agentic-arena",
+  "version": "2.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "catalog:extract": "node scripts/extract-card-catalog.mjs",
+    "test:art": "node tests/card-art-audit.mjs",
+    "test": "npm run catalog:extract && npm run test:art"
+  }
+}

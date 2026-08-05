@@ -1,7 +1,3 @@
-:root {
-  --aa-art-atlas: url("/assets/faction-art-atlas.webp");
-}
-
 .aa-art-card {
   --pointer-x: 50%;
   --pointer-y: 30%;
@@ -46,108 +42,43 @@
 
 .aa-art-card .card-art {
   isolation: isolate;
-  background-image:
-    linear-gradient(180deg, rgb(3 6 13 / 4%) 0%, transparent 44%, #050813 100%),
-    linear-gradient(110deg, color-mix(in srgb, var(--card-primary) 10%, transparent), transparent 44%, color-mix(in srgb, var(--card-secondary) 9%, transparent)),
-    var(--aa-art-atlas);
-  background-repeat: no-repeat;
-  background-position: center, center, var(--sprite-x, 0%) var(--sprite-y, 0%);
-  background-size: 100% 100%, 100% 100%, 500% 400%;
-  filter: saturate(var(--art-saturation, 1.08)) contrast(1.08) brightness(var(--art-brightness, 0.88));
+  overflow: hidden;
+  background: #050813;
   contain: paint;
-  transition: filter 220ms ease;
 }
 
 .aa-art-card .card-art::before,
 .aa-art-card .card-art::after {
   content: "";
   position: absolute;
-  pointer-events: none;
+  z-index: 3;
   inset: 0;
+  pointer-events: none;
 }
 
 .aa-art-card .card-art::before {
-  z-index: 2;
-  opacity: 0.58;
+  opacity: 0.42;
   background:
-    radial-gradient(ellipse at 50% 48%, transparent 0 28%, color-mix(in srgb, var(--card-secondary) 74%, transparent) 29% 29.7%, transparent 31% 43%, color-mix(in srgb, var(--card-primary) 52%, transparent) 44% 44.6%, transparent 46%),
-    linear-gradient(90deg, transparent 49.6%, color-mix(in srgb, var(--card-secondary) 35%, transparent) 50%, transparent 50.4%);
-  filter: drop-shadow(0 0 5px var(--card-primary));
+    linear-gradient(180deg, transparent 54%, #030711 100%),
+    radial-gradient(circle at 50% 50%, transparent 0 40%, color-mix(in srgb, var(--card-primary) 19%, transparent) 82%, transparent 100%);
   mix-blend-mode: screen;
-  animation: aa-overlay-pulse 5.6s ease-in-out infinite alternate;
 }
 
 .aa-art-card .card-art::after {
-  z-index: 3;
-  opacity: 0.58;
-  background-image:
-    var(--particle-map),
+  z-index: 4;
+  opacity: 0.44;
+  background:
     linear-gradient(var(--foil-angle), transparent 24%, rgb(255 255 255 / 16%) 44%, color-mix(in srgb, var(--card-secondary) 24%, transparent) 50%, transparent 68%),
     linear-gradient(90deg, rgb(1 3 8 / 24%), transparent 16% 84%, rgb(1 3 8 / 28%));
-  background-size: auto, 240% 240%, 100% 100%;
-  background-position: center, var(--pointer-x) var(--pointer-y), center;
-  background-repeat: no-repeat;
-  mix-blend-mode: screen, screen, normal;
+  background-size: 240% 240%, 100% 100%;
+  background-position: var(--pointer-x) var(--pointer-y), center;
+  mix-blend-mode: screen, normal;
   transition: opacity 180ms ease;
 }
 
-.aa-art-card:hover .card-art {
-  filter: saturate(calc(var(--art-saturation, 1.08) + 0.08)) contrast(1.1) brightness(calc(var(--art-brightness, 0.88) + 0.08));
-}
+.aa-art-card:hover .card-art::after { opacity: 0.78; }
 
-.aa-art-card:hover .card-art::after {
-  opacity: 0.86;
-}
-
-.aa-art-card[data-card-type="action"] .card-art::before {
-  background:
-    linear-gradient(153deg, transparent 18%, color-mix(in srgb, var(--card-secondary) 72%, transparent) 19% 20%, transparent 21% 43%, color-mix(in srgb, var(--card-primary) 66%, transparent) 44% 45%, transparent 46%),
-    radial-gradient(circle at 74% 27%, transparent 0 12%, color-mix(in srgb, var(--card-secondary) 60%, transparent) 13% 14%, transparent 15%);
-}
-
-.aa-art-card[data-card-type="overseer"] .card-art::before {
-  opacity: 0.72;
-  background:
-    conic-gradient(from 12deg at 50% 45%, transparent 0 8%, color-mix(in srgb, var(--card-secondary) 42%, transparent) 9% 9.8%, transparent 11% 20%, color-mix(in srgb, var(--card-primary) 48%, transparent) 21% 22%, transparent 23% 100%),
-    radial-gradient(circle at 50% 45%, transparent 0 30%, color-mix(in srgb, var(--card-secondary) 68%, transparent) 31% 31.8%, transparent 33%);
-}
-
-.aa-art-card[data-card-type="mission"] .card-art::before {
-  background:
-    repeating-radial-gradient(circle at 50% 50%, transparent 0 14%, color-mix(in srgb, var(--card-secondary) 55%, transparent) 15% 15.8%, transparent 17% 28%),
-    linear-gradient(90deg, transparent 49.6%, color-mix(in srgb, var(--card-primary) 55%, transparent) 50%, transparent 50.4%);
-}
-
-.aa-art-card[data-card-type="ultimate"] .card-art::before {
-  opacity: 0.78;
-  background:
-    repeating-conic-gradient(from 0deg at 50% 52%, color-mix(in srgb, var(--card-secondary) 52%, transparent) 0 1.2deg, transparent 1.2deg 18deg),
-    radial-gradient(circle at 50% 52%, color-mix(in srgb, var(--card-primary) 36%, transparent), transparent 42%);
-}
-
-.aa-art-card[data-card-type="arena"] .card-art::before {
-  background:
-    radial-gradient(ellipse at 50% 108%, transparent 0 41%, color-mix(in srgb, var(--card-secondary) 64%, transparent) 42% 42.7%, transparent 44% 56%, color-mix(in srgb, var(--card-primary) 48%, transparent) 57% 57.6%, transparent 59%),
-    linear-gradient(180deg, transparent 69%, color-mix(in srgb, var(--card-primary) 28%, transparent));
-}
-
-.aa-art-card[data-card-type="synergy"] .card-art::before {
-  background:
-    radial-gradient(circle at 34% 50%, transparent 0 18%, color-mix(in srgb, var(--card-secondary) 62%, transparent) 19% 20%, transparent 21%),
-    radial-gradient(circle at 66% 50%, transparent 0 18%, color-mix(in srgb, var(--card-primary) 62%, transparent) 19% 20%, transparent 21%),
-    linear-gradient(90deg, transparent 41%, color-mix(in srgb, var(--card-secondary) 58%, transparent) 42% 58%, transparent 59%);
-}
-
-.aa-art-card .card-art > .art-orbit,
-.aa-art-card .card-art > svg:not(.aa-art-fx) {
-  z-index: 4;
-  opacity: 0.26;
-  pointer-events: none;
-  filter: drop-shadow(0 0 9px var(--card-primary));
-}
-
-.aa-faction-art,
-.aa-art-grade,
+.aa-illustration-stage,
 .aa-particle-field,
 .aa-art-foil,
 .aa-art-vignette {
@@ -156,61 +87,43 @@
   pointer-events: none;
 }
 
-.aa-faction-art {
+.aa-illustration-stage {
   z-index: 0;
-  background-image: var(--aa-art-atlas);
-  background-repeat: no-repeat;
-  background-size: 500% 400%;
-  filter: saturate(1.08) contrast(1.08) brightness(0.88);
-  transform: translate3d(var(--crop-x, 0), var(--crop-y, 0), 0) scale(var(--art-scale, 1.06));
-  transition: transform 450ms cubic-bezier(0.2, 0.75, 0.2, 1), filter 250ms ease;
+  transform: scale(1.015);
+  transform-origin: center;
+  transition: transform 500ms cubic-bezier(0.2, 0.75, 0.2, 1), filter 240ms ease;
 }
 
-.aa-art-card:hover .aa-faction-art {
-  filter: saturate(1.2) contrast(1.08) brightness(1);
-  transform: translate3d(calc(var(--crop-x, 0px) * 0.5), calc(var(--crop-y, 0px) * 0.5), 0) scale(calc(var(--art-scale, 1.06) + 0.045));
-}
-
-.aa-art-grade {
-  z-index: 1;
-  background:
-    linear-gradient(180deg, rgb(3 6 13 / 8%) 0%, transparent 42%, #050813 100%),
-    linear-gradient(110deg, color-mix(in srgb, var(--card-primary) 13%, transparent), transparent 44%, color-mix(in srgb, var(--card-secondary) 12%, transparent));
-  mix-blend-mode: color;
-}
-
-.aa-art-fx {
-  position: absolute;
-  z-index: 2;
-  inset: 0;
+.aa-illustration-stage svg {
+  display: block;
   width: 100%;
   height: 100%;
-  overflow: visible;
-  pointer-events: none;
-  fill: none;
-  stroke: color-mix(in srgb, var(--card-secondary) 72%, white);
-  stroke-width: 0.65;
-  stroke-dasharray: 3 5;
-  opacity: 0.54;
-  filter: drop-shadow(0 0 4px var(--card-primary));
-  transform: rotate(var(--fx-rotation, 0deg));
+}
+
+.aa-art-card:hover .aa-illustration-stage {
+  filter: saturate(1.12) brightness(1.08);
+  transform: scale(1.065) translate3d(0, -1px, 0);
+}
+
+.aa-card-illustration .aa-subject,
+.aa-card-illustration .aa-motif {
+  transform-box: fill-box;
   transform-origin: center;
-  animation: aa-fx-drift 9s ease-in-out infinite alternate;
 }
 
-.aa-art-card[data-card-type="ultimate"] .aa-art-fx,
-.aa-art-card[data-card-type="overseer"] .aa-art-fx {
-  stroke-width: 0.85;
-  opacity: 0.72;
+.aa-art-card[data-card-type="action"] .aa-card-illustration .aa-motif {
+  animation: aa-impact-pulse 3.8s ease-in-out infinite alternate;
 }
 
-.aa-art-card[data-card-type="action"] .aa-art-fx {
-  stroke-dasharray: 14 5;
-  animation-duration: 3.8s;
+.aa-art-card[data-card-type="ultimate"] .aa-card-illustration,
+.aa-art-card[data-card-type="overseer"] .aa-card-illustration {
+  filter: saturate(1.16) contrast(1.05);
 }
+
+.aa-art-card[data-card-type="arena"] .aa-card-illustration .aa-name-insignia { opacity: 0.68; }
 
 .aa-particle-field {
-  z-index: 3;
+  z-index: 2;
   overflow: hidden;
 }
 
@@ -239,7 +152,7 @@
   border-radius: 50%;
   color: #eef7ff;
   background: rgb(3 7 15 / 62%);
-  font: 700 9px/1 Space Grotesk, sans-serif;
+  font: 700 9px/1 ui-sans-serif, system-ui, sans-serif;
   text-shadow: 0 0 8px var(--card-primary);
   box-shadow: inset 0 0 8px color-mix(in srgb, var(--card-primary) 18%, transparent);
   backdrop-filter: blur(4px);
@@ -289,22 +202,12 @@
     linear-gradient(180deg, transparent 65%, color-mix(in srgb, var(--card-primary) 16%, #050813));
 }
 
-.aa-art-card[data-division="0"] .aa-faction-art {
-  filter: grayscale(0.35) saturate(0.7) contrast(1.16) brightness(0.66);
-}
-
-.aa-art-card[data-card-type="arena"] .aa-faction-art {
-  transform: translate3d(var(--crop-x, 0), var(--crop-y, 0), 0) scale(1.18);
-  filter: saturate(1.12) contrast(1.03) brightness(0.92);
-}
-
-.aa-art-card[data-card-type="action"] .aa-faction-art {
-  filter: saturate(1.25) contrast(1.15) brightness(0.84);
-}
-
-.aa-art-card[data-card-type="overseer"] .aa-faction-art,
-.aa-art-card[data-card-type="ultimate"] .aa-faction-art {
-  filter: saturate(1.2) contrast(1.12) brightness(1.02);
+.aa-art-card .card-art > .art-orbit,
+.aa-art-card .card-art > svg:not(.aa-card-illustration) {
+  z-index: 3;
+  opacity: 0.16;
+  pointer-events: none;
+  filter: drop-shadow(0 0 9px var(--card-primary));
 }
 
 .aa-art-card .card-copy {
@@ -326,9 +229,7 @@
   opacity: 0.55;
 }
 
-.aa-art-card .card-copy strong {
-  text-shadow: 0 1px 8px rgb(0 0 0 / 80%);
-}
+.aa-art-card .card-copy strong { text-shadow: 0 1px 8px rgb(0 0 0 / 80%); }
 
 .aa-art-card .card-cost {
   box-shadow:
@@ -346,25 +247,11 @@
   backdrop-filter: blur(5px);
 }
 
-.aa-art-card.compact .aa-role-sigil {
-  width: 14px;
-  height: 14px;
-  font-size: 7px;
-}
-
-.aa-art-card.compact .aa-art-fx {
-  opacity: 0.46;
-}
-
+.aa-art-card.compact .aa-role-sigil { width: 14px; height: 14px; font-size: 7px; }
 .hand .aa-art-card .aa-particle-field,
-.reserve .aa-art-card .aa-particle-field {
-  opacity: 0.72;
-}
-
+.reserve .aa-art-card .aa-particle-field { opacity: 0.72; }
 .hand .aa-art-card .aa-role-sigil,
-.reserve .aa-art-card .aa-role-sigil {
-  display: none;
-}
+.reserve .aa-art-card .aa-role-sigil { display: none; }
 
 @keyframes aa-particle-rise {
   0%, 100% { opacity: 0.12; transform: translate3d(0, 4px, 0) scale(0.7); }
@@ -372,37 +259,24 @@
   70% { opacity: 0.3; transform: translate3d(3px, -17px, 0) scale(1.15); }
 }
 
-@keyframes aa-fx-drift {
-  from { stroke-dashoffset: 0; opacity: 0.35; }
-  to { stroke-dashoffset: 28; opacity: 0.72; }
-}
-
-@keyframes aa-overlay-pulse {
-  from { opacity: 0.34; transform: scale(0.985) rotate(-0.4deg); }
-  to { opacity: 0.7; transform: scale(1.015) rotate(0.4deg); }
+@keyframes aa-impact-pulse {
+  from { opacity: 0.74; filter: brightness(0.9); }
+  to { opacity: 1; filter: brightness(1.28); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .aa-art-card,
-  .aa-faction-art,
+  .aa-illustration-stage,
   .aa-art-foil,
-  .aa-art-fx,
-  .aa-particle {
+  .aa-particle,
+  .aa-card-illustration .aa-motif {
     animation: none !important;
     transition-duration: 0.01ms !important;
   }
-
-  .aa-art-card:hover {
-    transform: translateY(-3px);
-  }
+  .aa-art-card:hover { transform: translateY(-3px); }
 }
 
 @media (hover: none) {
-  .aa-art-card:hover {
-    transform: none;
-  }
-
-  .aa-art-card .aa-art-foil {
-    opacity: 0.12;
-  }
+  .aa-art-card:hover { transform: none; }
+  .aa-art-card .aa-art-foil { opacity: 0.12; }
 }
