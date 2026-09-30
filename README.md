@@ -2,7 +2,9 @@
 
 Agentic Arena is a tactical strategy card-battler based on Collective AI Inc's 20-division, 1,200-card universe.
 
-This repository begins from the verified static production build deployed at [agentic-arena-iota.vercel.app](https://agentic-arena-iota.vercel.app). The production baseline is intentionally preserved on `main`; visual-system upgrades are developed in reviewable feature branches.
+The site is a playable classic duel: 8,000 Life Points, a 40-card deck, Draw through End phases, one Normal Summon, tributes at Level 5 and Level 7, Attack versus Defense math, Spells, and Traps that chain. Card names, factions, and illustrations stay the original Collective AI catalog. Nothing here copies another game's cards.
+
+It is a progressive web app. After the first visit, install it from the browser (Add to Home Screen on iPhone, Install app on Android) and it opens full screen, including offline.
 
 ## Local preview
 
@@ -14,7 +16,7 @@ npx serve .
 
 ## Deployment
 
-The application is configured for Vercel through `vercel.json` and remains offline-first at runtime.
+The application is configured for Vercel through `vercel.json` and remains offline-first at runtime. `play.js` is the duel client. The production card bundle in `assets/` stays in the tree so the catalog extractor and the illustration audit can still verify all 1,200 cards.
 
 ## Card artwork integrity
 
