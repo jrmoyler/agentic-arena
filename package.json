@@ -3,9 +3,18 @@
   "version": "2.1.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "catalog:extract": "node scripts/extract-card-catalog.mjs",
     "test:art": "node tests/card-art-audit.mjs",
-    "test": "npm run catalog:extract && npm run test:art"
+    "test:offline": "node --test tests/service-worker.test.mjs",
+    "test:browser": "node --test tests/playability.spec.mjs",
+    "check": "node --check sw.js && node --check tests/service-worker.test.mjs && node --check tests/playability.spec.mjs",
+    "test": "npm run check && npm run test:offline && npm run catalog:extract && npm run test:art"
+  },
+  "devDependencies": {
+    "playwright": "1.56.0"
   }
 }
